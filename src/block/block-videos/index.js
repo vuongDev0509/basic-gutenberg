@@ -57,7 +57,7 @@ class VideoEdit extends Component {
                         </div>
 
                         <div className="block_video_cta">
-                            <a href={videoUrl} className="block_video_cta_popups">
+
                                 <MediaUpload
                                     allowedTypes={['image']}
                                     value={iconID}
@@ -67,16 +67,18 @@ class VideoEdit extends Component {
                                         <span className="cta_eidt_icon" onClick={open} >
                                             <Dashicon icon= "edit-large" />
                                         </span>
+                                        <a href={videoUrl} className="block_video_cta_popups">
                                         {attributes.iconUrl ?
                                             <img src={iconUrl || cgbGlobal.icon_holder } alt="image" />
                                             : " "
                                         }
+                                        </a>
 
                                     </div>
                                     ) }
                                 />
 
-                            </a>
+
                             <div class="block_group_video_url">
                                 <TextControl
                                     label="Insert URL Video"
@@ -142,6 +144,8 @@ registerBlockType( 'cgb/beplus-bock-videos', {
     save: function ({attributes}){
 
         const {imageUrl, iconUrl, videoUrl} = attributes;
+
+        // const backgroundColor = {imageUrl ? "" : "#eee"};
 
 		return (
 

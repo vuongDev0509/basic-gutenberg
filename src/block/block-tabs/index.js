@@ -38,25 +38,11 @@ class TabsEdit extends Component {
         items.push({
             tabsTitle: 'Tabs Title', desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         })
-        // items.desc.focus();
+        
         this.setState({items});
         this.props.setAttributes({items});
 
-
-        // const length = items.length;
-        // let isIndex = length - 1;
-        // let cc = items[isIndex].desc;
-
     }
-
-    // onFocus = (index) =>{
-    //     let items = JSON.parse(JSON.stringify(this.state.items));
-    //     console.log(items);
-    //     let isIndex = index - 1;
-    //     let cc = items[isIndex].desc;
-    //     console.log(cc);
-    //     // items[isIndex].desc.focus();
-    // }
 
     removeItems = (index)=>{
         let r = confirm("Remove Item ?");
@@ -209,9 +195,7 @@ registerBlockType( 'cgb/beplus-bock-tabs', {
 
         const {items, currentActive, tabsTitleColor, tabsTitleBackground, itemActive} = attributes;
         const blockProps = useBlockProps.save();
-        // function changeCurrentActive = (index) =>{
-        //     console.log(index);
-        // }
+
 		return (
 
             <div className="be-block block-tabs">

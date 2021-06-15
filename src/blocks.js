@@ -14,3 +14,4 @@ import './block/bolck-image-box/index.js';
 import './block/block-list-image-box/index.js';
 import './block/block-tabs/index.js';
 import './block/block-videos/index.js';
+import './block/block-carousel/index.js';
