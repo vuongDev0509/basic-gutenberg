@@ -11,7 +11,6 @@
 
 import './block/block.js';
 import './block/bolck-image-box/index.js';
-import './block/pulsedc-hero-section/index.js';
-import './block/pulsedc-icon-text-ss/index.js';
 import './block/block-list-image-box/index.js';
 import './block/block-tabs/index.js';
+import './block/block-videos/index.js';

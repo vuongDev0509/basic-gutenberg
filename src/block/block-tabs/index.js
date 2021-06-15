@@ -70,7 +70,8 @@ class TabsEdit extends Component {
 
     render() {
         const { items, currentActive } = this.state;
-
+        const {attributes, setAttributes } = this.props;
+        const {tabsTitleColor, tabsTitleBackground, itemActive} = attributes;
         return (
             <Fragment>
 
@@ -85,6 +86,32 @@ class TabsEdit extends Component {
                     </ToolbarGroup>
                 </BlockControls>
 
+                <InspectorControls>
+                    <PanelBody title={__('General')}>
+                        <PanelColorSettings
+                            title={__('Color Settings')}
+                            initialOpen={false}
+                            colorSettings={[
+                                {
+                                    label: __('Color Title Tabs'),
+                                    value: tabsTitleColor,
+                                    onChange: (value) => setAttributes({ tabsTitleColor: value === undefined ? '#fff' : value }),
+                                },
+                                {
+                                    label: __('Background Color Tab'),
+                                    value: tabsTitleBackground,
+                                    onChange: (value) => setAttributes({ tabsTitleBackground: value === undefined ? '#fff' : value }),
+                                },
+                                {
+                                    label: __('Background Color Tab Active'),
+                                    value: itemActive,
+                                    onChange: (value) => setAttributes({ itemActive: value === undefined ? '#fff' : value }),
+                                },
+                            ]}
+                        />
+                    </PanelBody>
+                </InspectorControls>
+
                 <div className="be-block block-tabs">
 
                     <div className="block_tabs_title">
@@ -94,7 +121,7 @@ class TabsEdit extends Component {
                             return(
 
 
-                                <h3 className={`block_tabs_title_item ${currentActive === index ? 'active' : ''} `} onClick={() => this.changeCurrentActive(index)}>
+                                <h3 className={`block_tabs_title_item ${currentActive === index ? 'active' : ''} `} onClick={() => this.changeCurrentActive(index)} style={{color: tabsTitleColor, background: currentActive === index ? itemActive : tabsTitleBackground  }}>
                                     <span className="block_tabs_cta_remove_item" onClick={() => { this.removeItems(index) }} data-index={index}>
                                         <Dashicon icon="no-alt" />
                                     </span>
@@ -108,7 +135,7 @@ class TabsEdit extends Component {
                                 </h3>
                             );
                         })}
-                        <h3 className="block_tabs_title_item block_tabs_cta_add_item" onClick={this.onAddItem}>
+                        <h3 className="block_tabs_title_item block_tabs_cta_add_item" onClick={this.onAddItem}  style={{color: tabsTitleColor, background: tabsTitleBackground }}>
                             <Dashicon icon="insert" />
                         </h3>
                     </div>
@@ -149,9 +176,14 @@ const blockAttrs = {
 			{ tabsTitle: 'Tabs Title', desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' },
 		],
     },
-    currentActive:{
-        type: 'number',
-        default: 0,
+    tabsTitleColor:{
+        type: "string",
+    },
+    tabsTitleBackground:{
+        type: "string",
+    },
+    itemActive:{
+        type:"string",
     }
 }
 
@@ -175,7 +207,7 @@ registerBlockType( 'cgb/beplus-bock-tabs', {
 
     save: function ({attributes}){
 
-        const {items, currentActive} = attributes;
+        const {items, currentActive, tabsTitleColor, tabsTitleBackground, itemActive} = attributes;
         const blockProps = useBlockProps.save();
         // function changeCurrentActive = (index) =>{
         //     console.log(index);
